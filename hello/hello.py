@@ -35,7 +35,9 @@ def get_list():
         with open("books.txt", "r") as books:
             for line in books:
                 name, author, id, iss = tuple(line.strip('\n').split('\t'))
-                print(name, author, id, iss)
+                book = Books(name, author, id, iss)
+                print("Book: {0.name}\tAuthor: {0.author}\tId: {0.id}\tIssue status: {0.issue}".format(book) +"\n"+ "-" *100)
+
     else:
         print("List is empty")
 
@@ -55,7 +57,7 @@ def main_get_book():
     if new_data == 0:
         print("Book not found ")
     else:
-        print("{0.name}\t{0.author}\t{0.id}\t{0.issue}".format(new_data))
+        print("Book: {0.name}\tAuthor: {0.author}\tId{0.id}\tIssue status: {0.issue}".format(new_data))
 
 
 
@@ -95,15 +97,15 @@ def delete_data():
 
 # Try to reduce this code by using modify function.
 # Same function for returning also.
-def iss_ret(operation):
-    in_id = input("Enter the ID of book: ")
+def iss_ret(operation, in_id):
     book = get_book(in_id)
     if book == 0:
-        print("Book not found")
+        if __name__ == "__main__":
+            print("Book not found")
     else:
         if book.issue == operation:
             if operation == "True":
-                print("Book is already issued")
+                print("Book is not in library!!!")
             else:
                 print("Book is already in library")
 
@@ -128,12 +130,6 @@ def iss_ret(operation):
                 print("File is empty")
 
 
-
-
-
-
-
-
 if __name__ == "__main__":
     c = True
     while c:
@@ -150,9 +146,11 @@ if __name__ == "__main__":
         elif choice == 5:
             delete_data()
         elif choice == 6:
-            iss_ret("True")
+            in_id = input("Enter the ID of book: ")
+            iss_ret("True", in_id)
         elif choice == 7:
-            iss_ret("False")
+            in_id = input("Enter the ID of book: ")
+            iss_ret("False", in_id)
         else:
             print("Wrong choice")
         c = input("Do you want to continue(y/Y) ")

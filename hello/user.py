@@ -1,4 +1,5 @@
 import os
+import hello
 
 class Reader(object):
 
@@ -9,7 +10,7 @@ class Reader(object):
 
     def check(self):
         l = self.books.split(" ")
-        if len(l) > 6:
+        if len(l) > 3:
             return True
 
 def get_user():
@@ -32,7 +33,7 @@ def get_u_list():
             for line in reader:
                 name, i, books = tuple(line.strip('\n').split('\t'))
                 new_reader = Reader(name, i, books)
-                print("{0.name}\t{0.id}\t{0.books}".format(new_reader), file=None)
+                print("Name: {0.name}\tId: {0.id}\tBooks: {0.books}".format(new_reader), file=None)
 
 
 def user_info(u_id):
@@ -44,22 +45,22 @@ def user_info(u_id):
         else:
             return 0
 
-def add_book(bid):
-    in_id = input("Enter the id of user: ")
-    user = user_info(in_id)
+def add_book(bid, uid):
+    user = user_info(uid)
     if user == 0:
         print("User not found")
     else:
         if user.check():
             print("Quota is full")
         else:
-            user.books = user.books.split(" ")
-            user.books.append(bid)
-            user.books = " ".join(user.books)
-            modify(user, user.id)
+            book = hello.get_book(bid)
+            if not(book == 0):
+                user.books = user.books.split(" ")
+                user.books.append(bid)
+                user.books = " ".join(user.books)
+                modify(user, user.id)
 
-def remove(bid):
-    in_id = input("Enter the id of user: ")
+def remove(bid, in_id):
     user = user_info(in_id)
     if user == 0:
         print("User not found")
@@ -129,7 +130,7 @@ if __name__ == "__main__":
             if new_data == 0:
                 print("user not found ")
             else:
-                print("{0.name}\t{0.id}\t{0.books}".format(new_data))
+                print("Name: {0.name}\tId: {0.id}\tBooks: {0.books}".format(new_data))
         elif choice == 4:
             i = input("Enter the id: ")
             user = user_info(i)
@@ -142,10 +143,12 @@ if __name__ == "__main__":
             delete(i)
         elif choice == 6:
             bid = input("Enter the id of the book you want to enter ")
-            add_book(bid)
+            uid = input("Enter the id of user: ")
+            add_book(bid, uid)
         elif choice == 7:
             bid = input("Enter the id of the book you want to delete ")
-            remove(bid)
+            uid = input("Enter the id of user ")
+            remove(bid, uid)
         c = input("Do you want to continue(y/Y) ")
         if not (c == 'y' or c == 'Y'):
             c = False
