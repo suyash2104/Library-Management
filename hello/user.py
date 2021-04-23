@@ -26,7 +26,8 @@ def write_data(new_data):
 def add_user():
     new_data = get_user()
     write_data(new_data)
-
+    
+#Change in main_branch1
 def get_u_list():
     if os.path.getsize("reader.txt") > 0:
         with open("reader.txt", "r") as reader:
