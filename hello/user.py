@@ -118,7 +118,7 @@ def delete(i):
 if __name__ == "__main__":
     c = True
     while c:
-        choice = int(input("\nEnter the choice\n1.Add user to Database: \n2.Get list: \n"
+        choice = int(input("\nEnter the choice\n1.Add user to Database: \n2.Get list \n"
                            "3.Get user\n4.Modify data\n5.Delete Data\n6.Add book to user\n"
                            "7.Remove book from user " ))
         if choice == 1:
