@@ -19,7 +19,7 @@ def get_user():
     id = input("Enter the ID: ")
     return Reader(name, id)
 
-#Change in main branch
+#Change in main_branch
 def write_data(new_data):
     with open("reader.txt","a") as reader:
         print("{0.name}\t{0.id}\t{0.books}".format(new_data), file=reader)
@@ -27,7 +27,8 @@ def write_data(new_data):
 def add_user():
     new_data = get_user()
     write_data(new_data)
-
+    
+#Change in main_branch1
 def get_u_list():
     if os.path.getsize("reader.txt") > 0:
         with open("reader.txt", "r") as reader:
@@ -118,7 +119,7 @@ def delete(i):
 if __name__ == "__main__":
     c = True
     while c:
-        choice = int(input("\nEnter the choice\n1.Add user to Database: \n2.Get list: \n"
+        choice = int(input("\nEnter the choice\n1.Add user to Database: \n2.Get list \n"
                            "3.Get user\n4.Modify data\n5.Delete Data\n6.Add book to user\n"
                            "7.Remove book from user " ))
         if choice == 1:
